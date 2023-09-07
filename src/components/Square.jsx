@@ -10,7 +10,7 @@ export default function Square({symbol, onClick, value}) {
   }
   return (
     <>
-      <button disabled={isDisable} className="square" onClick={() => {handleClick(); onClick()}}>{fill ? fill : '_'}</button>
+      <button disabled={isDisable} className={"square"} onClick={() => {handleClick(); onClick()}}>{fill ? fill : '_'}</button>
     </>
   )
 }

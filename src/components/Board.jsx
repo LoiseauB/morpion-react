@@ -15,6 +15,7 @@ export default function Board() {
     sessionScore, setSessionScore
   } = useContext(PlayerContext);
 
+  console.log("render.board", boardState)
   
   useEffect(()=>{
     const victoryPattern = [
@@ -31,6 +32,7 @@ export default function Board() {
       if(boardState[pattern[0]] === boardState[pattern[1]] && boardState[pattern[1]] === boardState[pattern[2]] && boardState[pattern[0]] !== null){
         setBoardState(Array(9).fill(null));
         setWinner(whichPlayer ? player1 : player2)
+        console.log(...localScoreHistory)
         setLocalScoreHistory([...localScoreHistory,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
         setSessionScore([...sessionScore,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
         setIsEndGame(true);
@@ -52,14 +54,22 @@ export default function Board() {
     currentBoardState[i] = whichPlayer ? 'O' : 'X';
     setBoardState(currentBoardState);
     setMoveHistory([...moveHistory,currentBoardState]);
-    
   }
+
+  // const [boardtest, setBoardtest] = useState([]);
+  //
+  // useEffect(() => {
+  //   const currentBoard = boardState
+  //   setBoardtest(currentBoard)
+  // }, [boardState])
 
   return(
     <>
-    <p>player 1: {player1}</p>
-    <p>player 2: {player2}</p>
-    <p>C'est à {whichPlayer ? player1 : player2} de jouer !</p>
+      <div className="playerWrap">
+        <p>player 1: <span className={"player1"}>{player1}</span></p>
+        <p>player 2: <span className={"player2"}>{player2}</span></p>
+      </div>
+      <p>C'est à {whichPlayer ? player1 : player2} de jouer !</p>
       <section className="grid">
         {/*@todo generate square with map*/}
         <div className="row">
@@ -78,7 +88,6 @@ export default function Board() {
           <Square symbol={whichPlayer} onClick={() => handleVictory(8)} value={boardState[8]}/>
         </div>
       </section>
-    
     </>
   )
 }

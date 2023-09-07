@@ -19,7 +19,7 @@ export default function InputNameUser({playerNumber}) {
 
   return (
     <header>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className={"inputUser"} onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="username">Player {playerNumber} :</label>
         <input
           type='text'

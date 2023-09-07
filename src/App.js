@@ -15,7 +15,7 @@ function App() {
   const [boardState, setBoardState] = useState(JSON.parse(localStorage.getItem("boardState")) || Array(9).fill(null));
   const [winner, setWinner] = useState(null);
   const [moveHistory, setMoveHistory] = useState(JSON.parse(localStorage.getItem("moveHistory")) || []);
-  const [localScoreHistory, setLocalScoreHistory] = useState(localStorage.getItem("localScoreHistory") || []);
+  const [localScoreHistory, setLocalScoreHistory] = useState(localStorage.localScoreHistory || []);
   const [sessionScore, setSessionScore] = useState(sessionStorage.getItem("sessionScore") || []);
 
   useEffect(() => {
@@ -34,6 +34,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("localScoreHistory", JSON.stringify(localScoreHistory));
+    console.log(localScoreHistory)
   }, [localScoreHistory]);
 
   useEffect(() => {
@@ -65,10 +66,6 @@ function App() {
             </>
           )}
         </PlayerContext.Provider>
-        
-        {/* 2 calls of InputNameUser component*/}
-        {/* call Board component*/}
-        {/*  9 calls of Square component*/}
       </main>
     </div>
   );

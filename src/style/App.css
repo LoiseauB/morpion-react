@@ -1,4 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+html {
+  font-family: 'Press Start 2P', cursive;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.playerWrap {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.player1 {
+  color: red;
+}
+
+.player2 {
+  color: green;
+}
+
 .square {
   height: 10vh;
   width: 10vh;
+}
+
+.inputUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  gap: 20px;
+}
+
+.inputUser label, .inputUser input{
+  font-size: 32px;
+}
+
+.inputUser input {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.inputUser input:focus-visible {
+  outline: none
 }
