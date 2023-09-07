@@ -1,5 +1,5 @@
 import { useContext, useState} from 'react'
-import { PlayerContext } from './App';
+import { PlayerContext } from '../App';
 
 
 export default function InputNameUser({playerNumber}) {

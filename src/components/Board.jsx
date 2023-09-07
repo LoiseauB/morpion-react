@@ -1,15 +1,17 @@
 import { useContext, useState, useEffect } from "react"
-import { PlayerContext } from "./App"
+import { PlayerContext } from "../App"
 import Square from "./Square";
 
 export default function Board() {
   const [whichPlayer, setWhichPlayer] = useState(true);
   const {
-    player1, setPlayer1,
-    player2, setPlayer2,
+    player1,
+    player2,
     setWinner,
     setIsEndGame,
-    boardState, setBoardState
+    boardState, setBoardState,
+    history,
+    setHistory
   } = useContext(PlayerContext);
 
   
@@ -39,10 +41,11 @@ export default function Board() {
   },[boardState])
 
   function handleVictory (i) {
-    const currentBoardState = boardState.slice()
-    setWhichPlayer(!whichPlayer)
-    currentBoardState[i] = whichPlayer ? 'O' : 'X'
-    setBoardState(currentBoardState)
+    const currentBoardState = boardState.slice();
+    setWhichPlayer(!whichPlayer);
+    currentBoardState[i] = whichPlayer ? 'O' : 'X';
+    setBoardState(currentBoardState);
+    setHistory([...history,currentBoardState]);
     
   }
 
