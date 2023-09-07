@@ -28,16 +28,12 @@ export default function Board() {
       if(boardState[pattern[0]] === boardState[pattern[1]] && boardState[pattern[1]] === boardState[pattern[2]] && boardState[pattern[0]] !== null){
         setBoardState(Array(9).fill(null));
         setWinner(whichPlayer ? player1 : player2)
-        setPlayer1("");
-        setPlayer2("");
         setIsEndGame(true);
       }
     })
     const boardFull = boardState.find((element) => element === null)
       if(boardFull === undefined){
         setBoardState(Array(9).fill(null));
-        setPlayer1("");
-        setPlayer2("");
         setIsEndGame(true);
       }
   },[boardState])
