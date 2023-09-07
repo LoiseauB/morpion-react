@@ -10,8 +10,9 @@ export default function Board() {
     setWinner,
     setIsEndGame,
     boardState, setBoardState,
-    history,
-    setHistory
+    moveHistory, setMoveHistory,
+    localScoreHistory, setLocalScoreHistory,
+    sessionScore, setSessionScore
   } = useContext(PlayerContext);
 
   
@@ -30,12 +31,17 @@ export default function Board() {
       if(boardState[pattern[0]] === boardState[pattern[1]] && boardState[pattern[1]] === boardState[pattern[2]] && boardState[pattern[0]] !== null){
         setBoardState(Array(9).fill(null));
         setWinner(whichPlayer ? player1 : player2)
+        setLocalScoreHistory([...localScoreHistory,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
+        setSessionScore([...sessionScore,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
         setIsEndGame(true);
       }
     })
     const boardFull = boardState.find((element) => element === null)
       if(boardFull === undefined){
         setBoardState(Array(9).fill(null));
+        setWinner('Match nul')
+        setLocalScoreHistory([...localScoreHistory,'Match nul'])
+        setSessionScore([...sessionScore,'Match nul'])
         setIsEndGame(true);
       }
   },[boardState])
@@ -45,7 +51,7 @@ export default function Board() {
     setWhichPlayer(!whichPlayer);
     currentBoardState[i] = whichPlayer ? 'O' : 'X';
     setBoardState(currentBoardState);
-    setHistory([...history,currentBoardState]);
+    setMoveHistory([...moveHistory,currentBoardState]);
     
   }
 

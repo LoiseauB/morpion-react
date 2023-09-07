@@ -4,6 +4,7 @@ import { useState, createContext, useEffect } from 'react';
 import Board from './components/Board';
 import EndGame from './components/EndGame';
 import History from './components/History';
+import ScoreHistory from './components/ScoreHistory';
 
 export const PlayerContext = createContext(null);
 
@@ -13,7 +14,9 @@ function App() {
   const [isEndGame, setIsEndGame] = useState(false);
   const [boardState, setBoardState] = useState(JSON.parse(localStorage.getItem("boardState")) || Array(9).fill(null));
   const [winner, setWinner] = useState(null);
-  const [history, setHistory] = useState(JSON.parse(localStorage.getItem("history")) || []);
+  const [moveHistory, setMoveHistory] = useState(JSON.parse(localStorage.getItem("moveHistory")) || []);
+  const [localScoreHistory, setLocalScoreHistory] = useState(localStorage.getItem("localScoreHistory") || []);
+  const [sessionScore, setSessionScore] = useState(sessionStorage.getItem("sessionScore") || []);
 
   useEffect(() => {
     localStorage.setItem("boardState", JSON.stringify(boardState));
@@ -26,13 +29,22 @@ function App() {
   }, [player1, player2]);
 
   useEffect(() => {
-    localStorage.setItem("history", JSON.stringify(history));
-}, [history]);
+    localStorage.setItem("moveHistory", JSON.stringify(moveHistory));
+}, [moveHistory]);
+
+  useEffect(() => {
+    localStorage.setItem("localScoreHistory", JSON.stringify(localScoreHistory));
+  }, [localScoreHistory]);
+
+  useEffect(() => {
+    sessionStorage.setItem("sessionScoreHistory", JSON.stringify(sessionScore));
+  }, [sessionScore]);
+
 
   return (
     <div className="App">
       <main>
-        <PlayerContext.Provider value={{player1, setPlayer1, player2, setPlayer2, boardState, setBoardState, isEndGame, setIsEndGame, winner, setWinner, history, setHistory}}>
+        <PlayerContext.Provider value={{player1, setPlayer1, player2, setPlayer2, boardState, setBoardState, isEndGame, setIsEndGame, winner, setWinner, moveHistory, setMoveHistory, localScoreHistory, setLocalScoreHistory, sessionScore, setSessionScore}}>
           {player1 === '' && player2 === '' && !isEndGame && (
             <InputNameUser playerNumber={1} />
           )}
@@ -41,12 +53,16 @@ function App() {
           )}
           {player1 !== '' && player2 !== '' && !isEndGame && (
              <>
-             <Board />
-             <History />
+              <Board />
+              <History />
+              <ScoreHistory scores={sessionScore}/>
              </>
           )}
           {isEndGame && (
-            <EndGame winner={winner}/>
+            <>
+              <EndGame winner={winner}/>
+              <ScoreHistory scores={localScoreHistory}/>
+            </>
           )}
         </PlayerContext.Provider>
         
