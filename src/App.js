@@ -26,10 +26,10 @@ useEffect(() => {
     <div className="App">
       <main>
         <PlayerContext.Provider value={{player1, setPlayer1, player2, setPlayer2, boardState, setBoardState, isEndGame, setIsEndGame}}>
-          {player1 === '' && player2 === '' && (
+          {player1 === '' && player2 === '' && !isEndGame && (
             <InputNameUser playerNumber={1} />
           )}
-          {player1 !== '' && player2 === '' && (
+          {player1 !== '' && player2 === '' && !isEndGame && (
             <InputNameUser playerNumber={2} />
           )}
           {player1 !== '' && player2 !== '' && !isEndGame && (

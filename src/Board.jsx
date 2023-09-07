@@ -5,11 +5,10 @@ import Square from "./Square";
 export default function Board() {
   const [whichPlayer, setWhichPlayer] = useState(true);
   const {
-    player1,
-    player2,
+    player1, setPlayer1,
+    player2, setPlayer2,
     setIsEndGame,
-    boardState,
-    setBoardState
+    boardState, setBoardState
   } = useContext(PlayerContext);
 
   
@@ -28,16 +27,18 @@ export default function Board() {
       if(boardState[pattern[0]] === boardState[pattern[1]] && boardState[pattern[1]] === boardState[pattern[2]] && boardState[pattern[0]] !== null){
         console.log('Victory');
         setBoardState(Array(9).fill(null));
+        setPlayer1("");
+        setPlayer2("");
         setIsEndGame(true);
-        return
       }
     })
     const boardFull = boardState.find((element) => element === null)
       if(boardFull === undefined){
         console.log('Null');
         setBoardState(Array(9).fill(null));
+        setPlayer1("");
+        setPlayer2("");
         setIsEndGame(true);
-        return
       }
   },[boardState])
 
