@@ -11,6 +11,7 @@ function App() {
   const [player2, setPlayer2] = useState(JSON.parse(localStorage.getItem("player2")) || '');
   const [isEndGame, setIsEndGame] = useState(false);
   const [boardState, setBoardState] = useState(JSON.parse(localStorage.getItem("boardState")) || Array(9).fill(null));
+  const [winner, setWinner] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("boardState", JSON.stringify(boardState));
@@ -25,7 +26,7 @@ useEffect(() => {
   return (
     <div className="App">
       <main>
-        <PlayerContext.Provider value={{player1, setPlayer1, player2, setPlayer2, boardState, setBoardState, isEndGame, setIsEndGame}}>
+        <PlayerContext.Provider value={{player1, setPlayer1, player2, setPlayer2, boardState, setBoardState, isEndGame, setIsEndGame, winner, setWinner}}>
           {player1 === '' && player2 === '' && !isEndGame && (
             <InputNameUser playerNumber={1} />
           )}
@@ -36,7 +37,7 @@ useEffect(() => {
              <Board />
           )}
           {isEndGame && (
-            <EndGame />
+            <EndGame winner={winner}/>
           )}
         </PlayerContext.Provider>
         

@@ -1,7 +1,7 @@
-export default function EndGame () {
+export default function EndGame ({winner}) {
   return (
     <>
-      <p>C'est Fini !!!!</p>
+      <p>{winner ? `${winner} a gagné !` : 'Match nul'}</p>
     </>
   )
 }

@@ -7,6 +7,7 @@ export default function Board() {
   const {
     player1, setPlayer1,
     player2, setPlayer2,
+    setWinner,
     setIsEndGame,
     boardState, setBoardState
   } = useContext(PlayerContext);
@@ -25,8 +26,8 @@ export default function Board() {
   ];
     victoryPattern.forEach((pattern) => {
       if(boardState[pattern[0]] === boardState[pattern[1]] && boardState[pattern[1]] === boardState[pattern[2]] && boardState[pattern[0]] !== null){
-        console.log('Victory');
         setBoardState(Array(9).fill(null));
+        setWinner(whichPlayer ? player1 : player2)
         setPlayer1("");
         setPlayer2("");
         setIsEndGame(true);
@@ -34,7 +35,6 @@ export default function Board() {
     })
     const boardFull = boardState.find((element) => element === null)
       if(boardFull === undefined){
-        console.log('Null');
         setBoardState(Array(9).fill(null));
         setPlayer1("");
         setPlayer2("");
