@@ -1,19 +1,16 @@
 import { useContext, useState, useEffect } from "react"
-import { PlayerContext } from "../App"
+import  PlayerContext  from "../contexts/PlayerContext"
 import Square from "./Square";
+import BoardContext from "../contexts/BoardContext";
+import HistoryContext from "../contexts/HistoryContext";
+import { useNavigate } from "react-router";
 
 export default function Board() {
   const [whichPlayer, setWhichPlayer] = useState(true);
-  const {
-    player1,
-    player2,
-    setWinner,
-    setIsEndGame,
-    boardState, setBoardState,
-    moveHistory, setMoveHistory,
-    localScoreHistory, setLocalScoreHistory,
-    sessionScore, setSessionScore
-  } = useContext(PlayerContext);
+  const {player1, player2 } = useContext(PlayerContext);
+  const { setWinner, setIsEndGame, boardState, setBoardState } = useContext(BoardContext);
+  const { moveHistory, setMoveHistory, localScoreHistory, setLocalScoreHistory, sessionScore, setSessionScore } = useContext(HistoryContext);
+  const navigate = useNavigate();
 
   console.log("render.board", boardState)
   
@@ -36,6 +33,7 @@ export default function Board() {
         setLocalScoreHistory([...localScoreHistory,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
         setSessionScore([...sessionScore,whichPlayer ? `Vainqueur: ${player1}` : `Vainqueur: ${player2}`])
         setIsEndGame(true);
+        return navigate("/end-game")
       }
     })
     const boardFull = boardState.find((element) => element === null)
@@ -45,7 +43,9 @@ export default function Board() {
         setLocalScoreHistory([...localScoreHistory,'Match nul'])
         setSessionScore([...sessionScore,'Match nul'])
         setIsEndGame(true);
+        return navigate("/end-game")
       }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[boardState])
 
   function handleVictory (i) {

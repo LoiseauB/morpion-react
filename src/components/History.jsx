@@ -1,15 +1,16 @@
-import {useContext, useState} from "react"
-import { PlayerContext } from "../App"
+import {useContext} from "react"
+import BoardContext from "../contexts/BoardContext";
+import HistoryContext from "../contexts/HistoryContext";
 
 export default function History () {
-  const {moveHistory, setBoardState} = useContext(PlayerContext);
-  const [test, setTest] = useState(false);
+  const {setBoardState} = useContext(BoardContext);
+  const {moveHistory} = useContext(HistoryContext);
   return (
     <>
       <h2>Come Back :</h2>
       {moveHistory.map((round, id) => {
         return (
-          <button key={id} onClick={() => {setBoardState(round); setTest(true)}}>
+          <button key={id} onClick={() => setBoardState(round)}>
           Move #{id + 1}
           </button>
         )

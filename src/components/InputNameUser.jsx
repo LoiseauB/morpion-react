@@ -1,19 +1,23 @@
 import { useContext, useState} from 'react'
-import { PlayerContext } from '../App';
+import  PlayerContext  from '../contexts/PlayerContext';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function InputNameUser({playerNumber}) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const { setPlayer1, setPlayer2 } = useContext(PlayerContext);
-  
+  console.log(PlayerContext);
   
   const handleSubmit = event => {
     event.preventDefault();
     if(playerNumber === 1){
       setPlayer1(username);
+      return navigate("/input/player2")
     }
     if(playerNumber === 2){
       setPlayer2(username);
+      return navigate("/game")
     }
   }
 
