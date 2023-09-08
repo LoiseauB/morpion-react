@@ -37,6 +37,21 @@ main {
   width: 10vh;
 }
 
+.historyButton {
+  padding: 10px;
+  margin: .5rem;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.historyButton:hover {
+  background-color: lightgrey;
+}
+
+.historyButton:active {
+  scale: .98;
+}
+
 .inputUser {
   display: flex;
   flex-direction: column;

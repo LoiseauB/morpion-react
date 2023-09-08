@@ -18,7 +18,15 @@ export default function Square({symbol, onClick, value}) {
 
   return (
     <>
-      <button disabled={isDisable} className={"square"} onClick={() => {handleClick(); onClick()}}>{boardState[value] !== null ? boardState[value] : '_'}</button>
+      <button
+        disabled={isDisable}
+        className={
+          "square "
+          + (boardState[value] === "O" ? "player1" : "")
+          + (boardState[value] === "X" ? "player2" : "")
+        }
+        onClick={() => {handleClick(); onClick()}}>{boardState[value] !== null ? boardState[value] : '_'}
+      </button>
     </>
   )
 }
