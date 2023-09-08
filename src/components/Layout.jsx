@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PlayerContext from "../contexts/PlayerContext";
 import BoardContext from "../contexts/BoardContext";
 import HistoryContext from "../contexts/HistoryContext";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 
 import "../style/App.css"
 

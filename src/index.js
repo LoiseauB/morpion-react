@@ -8,12 +8,17 @@ import InputNameUser from './components/InputNameUser';
 import Layout from './components/Layout';
 import Game from './components/Game';
 import EndGameWrap from './components/EndGameWrap';
+import StartGame from "./components/StartGame";
 
 const router = createBrowserRouter([
   {
     path:'/',
     element: <Layout />,
     children: [
+      {
+        path:'/',
+        element: <StartGame />
+      },
       {
         path:'/input/player1',
         element: <InputNameUser playerNumber={1} />
