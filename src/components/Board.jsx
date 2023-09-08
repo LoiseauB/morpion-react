@@ -73,19 +73,19 @@ export default function Board() {
       <section className="grid">
         {/*@todo generate square with map*/}
         <div className="row">
-          <Square symbol={whichPlayer} onClick={() => handleVictory(0)} value={boardState[0]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(1)} value={boardState[1]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(2)} value={boardState[2]}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(0)} value={0}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(1)} value={1}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(2)} value={2}/>
         </div>
         <div className="row">
-          <Square symbol={whichPlayer} onClick={() => handleVictory(3)} value={boardState[3]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(4)} value={boardState[4]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(5)} value={boardState[5]}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(3)} value={3}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(4)} value={4}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(5)} value={5}/>
         </div>
         <div className="row">
-          <Square symbol={whichPlayer} onClick={() => handleVictory(6)} value={boardState[6]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(7)} value={boardState[7]}/>
-          <Square symbol={whichPlayer} onClick={() => handleVictory(8)} value={boardState[8]}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(6)} value={6}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(7)} value={7}/>
+          <Square symbol={whichPlayer} onClick={() => handleVictory(8)} value={8}/>
         </div>
       </section>
     </>
