@@ -56,13 +56,6 @@ export default function Board() {
     setMoveHistory([...moveHistory,currentBoardState]);
   }
 
-  // const [boardtest, setBoardtest] = useState([]);
-  //
-  // useEffect(() => {
-  //   const currentBoard = boardState
-  //   setBoardtest(currentBoard)
-  // }, [boardState])
-
   return(
     <>
       <div className="playerWrap">

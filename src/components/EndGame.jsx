@@ -2,7 +2,7 @@ import { useContext } from "react"
 import  PlayerContext  from "../contexts/PlayerContext"
 import BoardContext from "../contexts/BoardContext";
 import HistoryContext from "../contexts/HistoryContext";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function EndGame () {
   const { setPlayer1, setPlayer2} = useContext(PlayerContext);
